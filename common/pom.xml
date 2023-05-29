@@ -6,8 +6,6 @@
         <artifactId>base-project</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <groupId>org.example</groupId>
     <artifactId>common</artifactId>
-    <name>Archetype - common</name>
-    <url>http://maven.apache.org</url>
+    <version>0.0.1-SNAPSHOT</version>
 </project>
