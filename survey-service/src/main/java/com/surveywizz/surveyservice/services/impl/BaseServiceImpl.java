@@ -3,10 +3,12 @@ package com.surveywizz.surveyservice.services.impl;
 import com.surveywizz.surveyservice.entity.BaseEntity;
 import com.surveywizz.surveyservice.repository.BaseRepository;
 import com.surveywizz.surveyservice.services.BaseService;
+import com.surveywizz.surveyservice.util.exception.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -21,23 +23,23 @@ public abstract class BaseServiceImpl<T extends BaseEntity> {
         this.baseRepository = baseRepository;
     }
 
-    protected T saveEntity(T entity){
+    protected T saveEntity(T entity) throws SQLException {
         T saved = this.baseRepository.save(entity);
         if(saved.getId() == null){
             //TODO refactor this.
-            throw new RuntimeException();
+            throw new SQLException();
         }
         log.info("Saved entity by id {} and table",saved.getId(),saved.getClass().getSimpleName());
         return saved;
     }
 
-    protected T updatedEntity(T entity){
+    protected T updatedEntity(T entity) throws SQLException {
         Date lastModifiedDate = new Date();
         entity.setLastModifiedDate(lastModifiedDate);
         T updated = this.baseRepository.save(entity);
         if(!updated.getLastModifiedDate().equals(lastModifiedDate)){
             // TODO refactor this.
-            throw new RuntimeException();
+            throw new SQLException();
         }
         return updated;
     }
@@ -50,12 +52,11 @@ public abstract class BaseServiceImpl<T extends BaseEntity> {
 
         Optional<T> o = this.baseRepository.findById(id);
         // TODO refactor this exception
-        o.orElseThrow(() -> new RuntimeException());
-        return o.get();
+        return o.orElseThrow(NotFoundException::new);
 
     }
 
-    protected void deleteById(String id){
+    protected void deleteById(String id) throws SQLException {
         T entity = findById(id);
         entity.setIsDeleted(true);
         updatedEntity(entity);
