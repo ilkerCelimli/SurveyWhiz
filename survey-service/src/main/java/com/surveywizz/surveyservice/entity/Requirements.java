@@ -9,8 +9,9 @@ public class Requirements extends BaseEntity {
     @Column(nullable = false)
     public String requirement;
 
-
-    public Survey survey;//aksam bakılcak
+    @ManyToOne
+    @JoinColumn(name = "survey_id")
+    public Survey survey;
 
 
 
