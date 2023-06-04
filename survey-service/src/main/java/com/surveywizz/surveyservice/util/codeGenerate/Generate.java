@@ -4,11 +4,11 @@ import java.util.Random;
 
 public class Generate {
 
-    public Generate{
+    public Generate(){
         generateCode();
     }
 
-    public String generateCode{
+    public String generateCode(){
         String characters = "abcdefghijklmnopqrstuvwxyz0123456789";
         int codeLength = 30;
 

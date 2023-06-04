@@ -24,7 +24,7 @@ public class Prize extends BaseEntity {
     private Integer Amount;
 
     @Column(nullable=false)
-    private Generate generate;
+    private String code;
 
 
 
