@@ -34,7 +34,6 @@ public class UserService {
     private final UserRegisterRequestConverter userRegisterRequestConverter;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-    private final JwtUtil jwtUtil;
 
 
     @Transactional
@@ -89,7 +88,7 @@ public class UserService {
         }, EmailIsNotFoundException::new);
 
     }
-
+/*
     public TokenResponse tokenResponse(UserLoginRequest userLoginRequest) {
         User u = this.userRepository.findUserByEmail(userLoginRequest.email()).orElseThrow(EmailIsNotFoundException::new);
         if (!u.getIsActive()) throw new BannedUserException(userLoginRequest.email());
@@ -102,5 +101,5 @@ public class UserService {
     public TokenResponse tokenResponse(String token) {
         String email = this.jwtUtil.validate(token).getClaim("email").asString();
         return new TokenResponse(jwtUtil.generate(email));
-    }
+    }*/
 }
