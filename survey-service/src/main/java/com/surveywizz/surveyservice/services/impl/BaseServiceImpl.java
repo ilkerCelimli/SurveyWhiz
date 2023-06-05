@@ -2,10 +2,8 @@ package com.surveywizz.surveyservice.services.impl;
 
 import com.surveywizz.surveyservice.entity.BaseEntity;
 import com.surveywizz.surveyservice.repository.BaseRepository;
-import com.surveywizz.surveyservice.services.BaseService;
 import com.surveywizz.surveyservice.util.exception.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
 import java.sql.SQLException;
@@ -23,7 +21,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity> {
         this.baseRepository = baseRepository;
     }
 
-    protected T saveEntity(T entity) throws SQLException {
+    public T saveEntity(T entity) throws SQLException {
         T saved = this.baseRepository.save(entity);
         if(saved.getId() == null){
             //TODO refactor this.
@@ -33,7 +31,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity> {
         return saved;
     }
 
-    protected T updatedEntity(T entity) throws SQLException {
+    public T updatedEntity(T entity) throws SQLException {
         Date lastModifiedDate = new Date();
         entity.setLastModifiedDate(lastModifiedDate);
         T updated = this.baseRepository.save(entity);
@@ -44,11 +42,11 @@ public abstract class BaseServiceImpl<T extends BaseEntity> {
         return updated;
     }
 
-    protected List<T> findAll(Integer page, Integer size){
+    public List<T> findAll(Integer page, Integer size){
         return this.baseRepository.findAll(PageRequest.of(page,size)).stream().collect(Collectors.toList());
     }
 
-    protected T findById(String id){
+    public T findById(String id){
 
         Optional<T> o = this.baseRepository.findById(id);
         // TODO refactor this exception
@@ -56,10 +54,10 @@ public abstract class BaseServiceImpl<T extends BaseEntity> {
 
     }
 
-    protected void deleteById(String id) throws SQLException {
+    public void deleteById(String id) throws SQLException {
         T entity = findById(id);
         entity.setIsDeleted(true);
-        updatedEntity(entity);
+        this.baseRepository.save(entity);
         log.info("deleted by id {},and table {}",entity.getId(),entity.getClass().getSimpleName());
     }
 

@@ -10,3 +10,8 @@ spring:
   cloud:
     config:
       name: survey-service
+
+server:
+  servlet:
+    context-path: /api/v1/
+
