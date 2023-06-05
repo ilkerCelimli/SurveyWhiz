@@ -1,0 +1,13 @@
+spring:
+  config:
+    import: optional:file:.env[.properties]
+  data:
+    mongodb:
+      uri: ${MONGO_URI:mongodb+srv://Meloonia:2bfb85101@user-service.vj9bcnu.mongodb.net/?retryWrites=true&w=majority}
+      database: users
+      authentication-database: admin
+server:
+  port: 9011
+
+jwt:
+  secret-key: RandomKey
