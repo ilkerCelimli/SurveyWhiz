@@ -29,7 +29,7 @@ public class UserApi {
         return ResponseEntity.ok(GenericResponse.SUCCESS(u));
     }
 
- /*   @PostMapping("/login")
+    @PostMapping("/login")
     public ResponseEntity<GenericResponse<TokenResponse>> login(@RequestBody UserLoginRequest userLoginRequest){
        TokenResponse tokenResponse =  this.userService.tokenResponse(userLoginRequest);
        return ResponseEntity.ok(GenericResponse.SUCCESS(tokenResponse));
@@ -38,8 +38,8 @@ public class UserApi {
     @PostMapping("/refresh")
     public ResponseEntity<GenericResponse<TokenResponse>> refresh(@RequestBody TokenResponse token) {
         TokenResponse tokenResponse = this.userService.tokenResponse(token.getToken());
-        return ResponseEntity.ok(GenericResponse.SUCCESS(tokenResponse));*/
-  //  }
+        return ResponseEntity.ok(GenericResponse.SUCCESS(tokenResponse));
+    }
     @GetMapping("/activeuser")
     public ResponseEntity<GenericResponse<Void>> activeUser(@RequestParam String code) {
         this.userService.activiteUser(code);
