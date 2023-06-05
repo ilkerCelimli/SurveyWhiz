@@ -27,6 +27,11 @@ Please note that this project is currently under active development. As a result
 ### The database includes the following tables:
 ![dataa](https://github.com/ilkerCelimli/SurveyWhiz/assets/76767449/f1cac314-93aa-4579-895b-e28719151ac4)
 
+
+### Er Diagram
+![erDiagram](https://github.com/ilkerCelimli/SurveyWhiz/assets/76767449/9a041ca9-e4cd-4ce7-89b4-75a0995321bf)
+
+
 ### General Overview:
 ![genell](https://github.com/ilkerCelimli/SurveyWhiz/assets/76767449/09e1d7d9-be60-4cbd-a608-df74cfecf088)
 
