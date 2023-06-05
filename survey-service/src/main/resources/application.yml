@@ -11,5 +11,7 @@ spring:
     config:
       name: survey-service
 
-
+server:
+  servlet:
+    context-path: /api/v1/
 
