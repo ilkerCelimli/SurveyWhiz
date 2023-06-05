@@ -19,4 +19,9 @@ public class HandleExceptions {
     public ResponseEntity<Object> handleNotFoundException(NotFoundException ex){
         return ResponseEntity.badRequest().build();
     }
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<Object> handleRunTimeException(RuntimeException ex){
+        return ResponseEntity.badRequest().build();
+    }
 }
