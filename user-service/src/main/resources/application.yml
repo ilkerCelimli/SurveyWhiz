@@ -1,0 +1,26 @@
+
+spring:
+  application:
+    name: user-service
+  cloud:
+    config:
+      name: user-service
+  cache:
+    type: redis
+  config:
+    import: optional:configserver:http://localhost:8888
+email:
+    host: ${email_host}
+    username: ${email_username}
+    password: ${email_password}
+    port: ${email_port}
+    properties:
+      mail:
+        stmp:
+          auth: true
+          starttls:
+            enable: true
+          ssl:
+            required: true
+            enabled: true
+

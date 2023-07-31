@@ -15,6 +15,13 @@ public class PrizeServiceImpl extends BaseServiceImpl<Prize> implements PrizeSer
         this.prizeRepository = prizeRepository;
     }
 
+    @Override
+    public void sendPrize(String userId){
+
+    }
+
+
+
 
 
 
