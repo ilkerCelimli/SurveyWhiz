@@ -1,6 +1,4 @@
 spring:
-  profiles:
-    active: development
   data:
     mongodb:
       username: root
@@ -20,25 +18,4 @@ management:
     web:
       exposure:
         include: prometheus, metrics, info, health, shutdown, beans
-
----
-spring:
-  data:
-    mongodb:
-      username: root
-      password: root
-      database: test
-      host: localhost
-      port: 27017
-      authentication-database: admin
-  profiles:
-    active: test
-
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: prometheus, metrics, info, health, shutdown, beans
-
 
