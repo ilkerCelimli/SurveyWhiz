@@ -4,9 +4,11 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.surveywizz.surveyservice.entity.Prize;
 import com.surveywizz.surveyservice.services.PrizeService;
 import feign.Response;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +18,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("prize/")
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class PrizeController {
 
     private final PrizeService prizeService;
@@ -40,17 +42,15 @@ public class PrizeController {
         }
     }
 
-     @PutMapping("/{id}")
-    public ResponseEntity<Prize> update(@JsonInclude(JsonInclude.Include.NON_NULL)
-                                             @RequestBody Prize prize){
-         try {
-             return ResponseEntity.ok(this.prizeService.updatedEntity(prize));
-
-         } catch (SQLException e) {
-             return new ResponseEntity<Void>(null,404);
-         }
-
-     }
+    @PutMapping("/{id}")
+    public ResponseEntity<Prize> update(@JsonInclude(JsonInclude.Include.NON_NULL) @RequestBody Prize prize) {
+        try {
+            Prize updatedPrize = this.prizeService.updatedEntity(prize);
+            return ResponseEntity.ok(updatedPrize);
+        } catch (SQLException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
 
      @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable String id){
