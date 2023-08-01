@@ -26,7 +26,7 @@ public class JsonTokenUtils {
     public static String generate(String email,String[] roles){
         return JWT.create()
                 .withClaim("email",email)
-                .withExpiresAt(new Date(System.currentTimeMillis() + (30*60*60)))
+                .withExpiresAt(new Date(System.currentTimeMillis() + (1000*60*30)))
                 .withArrayClaim("roles",roles)
                 .sign(algorithm);
     }

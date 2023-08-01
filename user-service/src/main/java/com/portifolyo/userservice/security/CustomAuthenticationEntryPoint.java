@@ -20,12 +20,12 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
     }
 
     @Override
-    public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
+    public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException {
         response.setStatus(403);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         GenericResponse<Void> genericResponse = new GenericResponse<>(403,"Authentication error");
-        PrintWriter i  =response.getWriter();
+        PrintWriter i = response.getWriter();
         i.print(objectMapper.writeValueAsString(genericResponse));
         i.flush();
 

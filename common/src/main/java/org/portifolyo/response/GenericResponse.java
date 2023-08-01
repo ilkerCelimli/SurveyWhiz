@@ -1,12 +1,14 @@
 package org.portifolyo.response;
 
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 public class GenericResponse<T> {
     private final Integer statusCode;
     private final String message;
-    private final LocalDateTime localDateTime;
+    private final String localDateTime;
     private T data;
 
 
@@ -14,12 +16,12 @@ public class GenericResponse<T> {
         this.statusCode = statusCode;
         this.message = message;
         this.data = data;
-        this.localDateTime = LocalDateTime.now();
+        this.localDateTime = LocalDateTime.now().toString();
     }
     public GenericResponse(Integer statusCode,String message) {
         this.message = message;
         this.statusCode = statusCode;
-        this.localDateTime = LocalDateTime.now();
+        this.localDateTime = LocalDateTime.now().toString();
     }
 
 
@@ -31,7 +33,7 @@ public class GenericResponse<T> {
         return message;
     }
 
-    public LocalDateTime getLocalDateTime() {
+    public String getLocalDateTime() {
         return localDateTime;
     }
 
